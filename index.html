@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formação Vuejs</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .group__cardbox::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px #F5F5F5;
+            background-color: #F5F5F5;
+        }
+
+        .group__cardbox::-webkit-scrollbar {
+            width: 10px;
+            background-color: #F5F5F5;
+        }
+
+        .group__cardbox::-webkit-scrollbar-thumb {
+            background-color: #2c3970;
+            border: 2px solid #F5F5F5;
+        }
+
+
+        main {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        header {
+            background: #2c3970;
+            padding: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            color: #fff;
+        }
+
+        .logo h1 {
+            font-weight: bold;
+        }
+
+        .btn__favorite i {
+            color: #fff;
+            font-weight: bold;
+            font-style: normal;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .btn__favorite  i:last-of-type{
+            display: none;
+        }
+
+        .card.active .btn__favorite i:last-of-type{
+            display: block;
+        }
+        .card.active .btn__favorite i:first-of-type{
+            display: none;
+        }
+
+        .group__cardbox {
+            padding: 20px;
+            max-height: 80vh;
+            overflow: auto;
+            background: #F5F5F5
+        }
+        .group__card--recent img {
+            object-fit: cover;
+            height: 100%;
+        }
+
+        .group__card--recent .card {
+            margin-bottom: 15px;
+        }
+
+        .group__card--recent .card-text {
+            display: none;
+        }
+
+        .group__card--recent .card-title {
+            font-size: .9rem
+        }
+
+
+    </style>
+</head>
+<body>
+
+    
+    <div id="root">
+        <nav-bar @category-change="onCategoryChange" @country-change="onCountryChange">       
+        </nav-bar>       
+
+        <main>
+            <div class="container-fluid">
+                
+    
+                <div class="row">
+
+    
+                    <div class="col-md-4 group__card group__card--recent">
+                        <title-article>Recent news</title-article>
+                        <div class="group__cardbox">
+                            <article-card-news v-for="article in recentArticles"
+                            :article="article" :key="recentArticles.length">
+                            </article-card-news>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-8 group__card">
+                        <title-article>Recent news</title-article>
+                        <article-columns>
+                            <article-card v-for="article in olderArticles"
+                            :article="article" :key="olderArticles.length">
+                            </article-card>
+                        </article-columns>
+                    </div>
+    
+                </div>
+    
+            </div>
+        </main>
+        
+        <footer-bar />
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+    <script src="main.js">
+    </script>
+
+</body>
+</html>
